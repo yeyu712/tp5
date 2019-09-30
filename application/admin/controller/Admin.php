@@ -69,6 +69,16 @@ class Admin extends Controller
     }
 
     public function del(){
-
+        $id=input('id');
+        if($id!=2){
+            if(db('admin')->delete(input('id'))){
+                    $this->success('删除管理员成功','lst');
+            }else{
+                $this->error('删除管理员失败')；
+            }
+        }else{
+            $this->error('删除管理员失败')；
+        }
+        $id=db('user')->delete(input('id'));
     }
 }
